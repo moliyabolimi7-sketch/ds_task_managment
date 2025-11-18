@@ -1,161 +1,48 @@
-📌 TaskFlow Pro — Rollarga asoslangan vazifa boshqaruvi, Telegram Login, Real-Time Chat va Hisobotlar tizimi
-
-TaskFlow Pro — kompaniyadagi ish jarayonlarini avtomatlashtirish uchun yaratilgan zamonaviy veb-platforma.
-Tizim menejer, direktor, admin va hodimlar o‘rtasidagi vazifa boshqaruvini soddalashtiradi, Telegram orqali autentifikatsiya qiladi, real-time chat taqdim etadi, va aniq statistika hamda hisobotlarni yaratadi.
-
-🚀 Asosiy imkoniyatlar
-🔐 Telegram login
-
-Foydalanuvchi ro‘yxatini admin yaratadi
-
-Login/parolni foydalanuvchi Telegram orqali oladi
-
-Aiogram 3 orqali xavfsiz autentifikatsiya
-
-JWT Access/Refresh tokenlar
-
-🧩 Rollar va huquqlar (RBAC)
-Rol	Huquqlar
-👑 Ta’sischi	Barcha statistika, barcha bo‘limlar, vazifa yuklash
-🎯 Direktor	Vazifa yuklash, tasdiqlash, muddatni uzaytirish
-🛠 Admin	User CRUD, bo‘limlar, rang sxema, statistika
-🧑‍💼 Menejer	O‘z bo‘limiga vazifa yuklash, boshqa bo‘lim uchun direktor tasdig‘i
-👤 Hodim	Faqat o‘z vazifalari, chat, fayl yuklash, Redo jarayoni
-📝 Vazifa jarayoni
-
-Statuslar:
-
-New
-
-In progress
-
-Pending review
-
-Completed
-
-Rejected / Redo
-
-Vazifa atributlari:
-
-Kimga / kimdan
-
-Boshlanish va tugash vaqti
-
-Muddat (timer)
-
-Ball
-
-Kategoriya
-
-Tavsif
-
-Chat bilan biriktirilgan
-
-💬 Real-Time Chat
-
-WebSocket asosida real-time yozishmalar
-
-Rasm, fayl, audio, video
-
-Har bir fayl uchun Telegram notifikatsiya
-
-MinIO (S3 compatible) storage
-
-🔔 Telegram bildirishnomalari
-
-Yangi vazifa yuklandi
-
-Direktor tasdiqlashi kerak
-
-Vazifa topshirildi
-
-Fayl yuklandi
-
-Qayta topshirish (Redo)
-
-Kunlik statistik xabarnoma
-
-📊 Hisobotlar
-
-Hodimlar uchun:
-
-Kunlik / Haftalik / Oylik statistikalar
-
-Ball tarixi grafikda
-
-Menejer uchun:
-
-Bo‘lim kesimida vazifa statistikasi
-
-Hodimlar reytingi
-
-Direktor / Ta’sischi:
-
-Eng yaxshi hodimlar
-
-Eng faol bo‘limlar
-
-Filiallar statistikasi
-
-📤 Google Sheets Export
-
-Ishlar tarixi
-
-Ballar
-
-Vazifalar tarixi
-
-Chat fayllari
-
-Sheets API orqali avtomatik eksport
-
-🧱 Texnologiyalar
-Backend:
-
-FastAPI
-
-PostgreSQL
-
-SQLAlchemy 2.0
-
-Alembic
-
-Redis (queue/cache)
-
-MinIO (S3 storage)
-
-JWT Authentication
-
-WebSocket (real-time chat)
-
-Frontend:
-
-React + Vite
-
-TailwindCSS
-
-Zustand/Redux (state management)
-
-Mobile-first UI
-
-Telegram Bot:
-
-Aiogram 3
-
-Approve/Reject inline tizimi
-
-Login parol generatsiyasi
-
-Fayl preview
-
-Kunlik xabarnoma scheduler
-
-Infra:
-
-Docker Compose
-
-Nginx Reverse Proxy
-
-S3 Storage (MinIO)
-
-Multi-container microservices
+# TaskFlow Pro — Rollarga asoslangan vazifa boshqaruvi
+
+TaskFlow Pro menejerlar, direktorlar va hodimlar o'rtasidagi jarayonlarni yagona platformada uyg'unlashtiradi. Loyiha FastAPI backend, React + Vite frontend, Aiogram 3 Telegram boti va Docker Compose asosidagi infrani o'z ichiga oladi.
+
+## 🏗 Arxitektura qisqacha
+- **Backend (FastAPI)** — Auth, RBAC, vazifalar, chat, fayl yuklash, hisobotlar va Google Sheets eksporti.
+- **Frontend (React + Tailwind)** — mobil-first dizayn, sidebar navigatsiya, real-time chat interfeysi va statistik dashboardlar.
+- **Telegram bot (Aiogram 3)** — telefon orqali autentifikatsiya, inline approve/reject, live notifikatsiyalar.
+- **Infra** — PostgreSQL, Redis, MinIO, Nginx reverse proxy, Docker Compose orkestratsiyasi.
+
+Batafsil dizayn `docs/ARCHITECTURE.md` faylida.
+
+## 🚀 Ishga tushirish
+1. `.env` faylini yarating va quyidagilarni to'ldiring:
+   ```env
+   JWT_SECRET_KEY=super-secret
+   JWT_REFRESH_SECRET_KEY=super-refresh
+   TELEGRAM_BOT_TOKEN=123456:ABC
+   GOOGLE_SERVICE_ACCOUNT_JSON=/secrets/google.json
+   ```
+2. Docker Compose bilan barcha servislarni ko'taring:
+   ```bash
+   docker compose up --build
+   ```
+3. FastAPI hujjatlari `http://localhost:8000/docs` da, frontend esa `http://localhost:5173` da ishlaydi.
+
+## 🔑 Asosiy imkoniyatlar
+- Telegram orqali login/parol generatsiyasi va tasdiqlash.
+- RBAC: Owner, Director, Admin, Manager, Employee rollari.
+- Vazifa sikli: New → In Progress → Pending Review → Completed / Rejected.
+- WebSocket chat, fayl/screenshot/audio/video upload va MinIO saqlash.
+- Telegram notifikatsiyalari (yangi vazifa, topshirildi, redo, kunlik xulosalar).
+- Google Sheets eksport endpointlari.
+- Admin panel — foydalanuvchilar, bo'limlar va rang sxemasi sozlamalari.
+
+## 📦 Papkalar
+```
+backend/        FastAPI ilovasi + Alembic
+frontend/       React + Vite mijoz ilovasi
+telegram_bot/   Aiogram 3 bot
+nginx/          Reverse proxy konfiguratsiyasi
+docs/           ERD va UML hujjatlari
+```
+
+## 🧪 Test va rivojlantirish
+- Backendni lokal ishga tushirish: `uvicorn app.main:app --reload --app-dir backend`
+- Frontendni dev rejimida: `cd frontend && npm install && npm run dev`
+- Telegram botini lokal ishga tushirish: `cd telegram_bot && pip install -r requirements.txt && python bot.py`
