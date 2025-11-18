@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+sqlalchemy>=2.0
+psycopg[binary]
+jose
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+boto3
+redis
+httpx
+alembic
+google-api-python-client
+google-auth
+google-auth-httplib2
