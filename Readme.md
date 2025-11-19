@@ -32,6 +32,18 @@ Batafsil dizayn `docs/ARCHITECTURE.md` faylida.
 - Telegram notifikatsiyalari (yangi vazifa, topshirildi, redo, kunlik xulosalar).
 - Google Sheets eksport endpointlari.
 - Admin panel — foydalanuvchilar, bo'limlar va rang sxemasi sozlamalari.
+- Direktorlar uchun executive hisobotlari va premium leaderboard vidjetlari.
+
+## 📊 Executive hisobotlari
+
+FastAPI backendiga yangi `/api/v1/reports/executive` endpointi qo'shildi. U quyidagi ma'lumotlarni qaytaradi:
+
+- Barcha statuslar bo'yicha umumiy metrikalar, tugallanish foizi va premium ball volumeni.
+- Bo'limlar kesimidagi sog'liq jadvali (completed/pending/active).
+- Top performerlar va ularning rollari/departamentlari.
+- So'nggi premium timeline — yuqori baholi vazifalar, holati va muddatlari.
+
+Frontendning **Reports** sahifasida ushbu ma'lumotlar gradient kartalar, department health progress barlari va executive timeline ko'rinishida aks etadi.
 
 ## 📦 Papkalar
 ```

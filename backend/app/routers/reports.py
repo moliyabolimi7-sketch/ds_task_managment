@@ -21,3 +21,13 @@ def leaderboard(
     db: Session = Depends(get_db),
 ):
     return dashboard.leaderboard(db)
+
+
+@router.get("/reports/executive")
+def executive_overview(
+    _: User = Depends(deps.require_roles(RoleEnum.MANAGER, RoleEnum.DIRECTOR, RoleEnum.OWNER)),
+    db: Session = Depends(get_db),
+):
+    """Premium xulosalar: direktor, ta'sischi va menejerlar uchun bo'lim kesimidagi metrikalar."""
+
+    return dashboard.executive_overview(db)
