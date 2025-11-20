@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Pro — Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="tfp-shell" style="grid-template-columns: 1fr; min-height: 100vh;">
+      <section class="tfp-content" style="max-width: 480px; margin: auto;">
+        <header class="tfp-toolbar" style="justify-content: center;">
+          <h1 class="tfp-logo">TaskFlow Pro</h1>
+          <button class="theme-toggle" type="button">🌙</button>
+        </header>
+        <article class="tfp-card">
+          <h2>Secure Login</h2>
+          <p>Credentials are issued via Telegram bot. Enter them here to continue.</p>
+          <form id="login-form" class="tfp-grid" style="margin-top: 1.5rem;">
+            <label>
+              <span>Login</span>
+              <input class="tfp-input" name="login" placeholder="Phone or ID" />
+            </label>
+            <label>
+              <span>Password</span>
+              <input class="tfp-input" name="password" type="password" placeholder="••••••" />
+            </label>
+            <button class="tfp-button" type="submit">Sign in</button>
+          </form>
+          <div id="login-status" style="margin-top: 1rem;"></div>
+          <p style="margin-top: 2rem;">
+            Need access? Contact the bot:
+            <a href="https://t.me/taskflow_pro_bot" target="_blank" rel="noreferrer">@taskflow_pro_bot</a>
+          </p>
+        </article>
+      </section>
+    </main>
+    <script type="module" src="/src/pages/login.ts"></script>
+  </body>
+</html>

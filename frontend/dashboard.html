@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Pro — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="tfp-shell">
+      <aside class="tfp-sidebar">
+        <div class="tfp-logo">TaskFlow Pro</div>
+        <nav class="tfp-nav">
+          <a class="active" href="/dashboard.html">Dashboard</a>
+          <a href="/tasks.html">Tasks</a>
+          <a href="/task-detail.html">Task Detail</a>
+          <a href="/reports.html">Reports</a>
+          <a href="/users.html">Users</a>
+          <a href="/settings.html">Settings</a>
+          <a href="/login.html">Logout</a>
+        </nav>
+      </aside>
+      <main class="tfp-content">
+        <header class="tfp-toolbar">
+          <div>
+            <h1>Executive Pulse</h1>
+            <p>Realtime overview of your teams, chats and scores</p>
+          </div>
+          <div class="tfp-avatar-group">
+            <div class="tfp-avatar">LR</div>
+            <div class="tfp-avatar">SY</div>
+            <button class="theme-toggle" type="button">🌙</button>
+          </div>
+        </header>
+
+        <section class="tfp-cards" id="stats"></section>
+
+        <section class="tfp-grid" style="grid-template-columns: 2fr 1fr;">
+          <article class="tfp-card">
+            <header class="tfp-toolbar">
+              <div>
+                <h3>Pipeline</h3>
+                <strong>Department breakdown</strong>
+              </div>
+              <button class="tfp-button" type="button">Create task</button>
+            </header>
+            <table class="tfp-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Assignee</th>
+                  <th>Status</th>
+                  <th>Score</th>
+                  <th>Due</th>
+                </tr>
+              </thead>
+              <tbody id="task-table"></tbody>
+            </table>
+          </article>
+          <article class="tfp-card">
+            <h3>Live timeline</h3>
+            <div id="timeline" class="tfp-timeline"></div>
+          </article>
+        </section>
+
+        <section class="tfp-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          <article class="tfp-card">
+            <h3>Notifications</h3>
+            <div id="notifications" class="tfp-notification-center"></div>
+          </article>
+          <article class="tfp-card">
+            <h3>Top performers</h3>
+            <div id="performers" class="tfp-grid"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/pages/dashboard.ts"></script>
+  </body>
+</html>

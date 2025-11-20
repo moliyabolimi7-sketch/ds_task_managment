@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Pro — Task Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="tfp-shell">
+      <aside class="tfp-sidebar">
+        <div class="tfp-logo">TaskFlow Pro</div>
+        <nav class="tfp-nav">
+          <a href="/dashboard.html">Dashboard</a>
+          <a href="/tasks.html">Tasks</a>
+          <a class="active" href="/task-detail.html">Task Detail</a>
+          <a href="/reports.html">Reports</a>
+          <a href="/users.html">Users</a>
+          <a href="/settings.html">Settings</a>
+          <a href="/login.html">Logout</a>
+        </nav>
+      </aside>
+      <main class="tfp-content">
+        <header class="tfp-toolbar">
+          <div>
+            <h1>Campaign Launch Assets</h1>
+            <p>Assigned to Kamron • Due in 6 hours • Score 40</p>
+          </div>
+          <button class="theme-toggle" type="button">🌙</button>
+        </header>
+        <section class="tfp-grid" style="grid-template-columns: 2fr 1fr;">
+          <article class="tfp-card">
+            <h3>Brief</h3>
+            <p>
+              Create a multi-format asset pack (story, feed, hero). Include localized copy,
+              CTA variations and attach Figma preview links.
+            </p>
+            <div class="tfp-chat" style="margin-top: 1.5rem;">
+              <div id="chat" class="tfp-chat-messages"></div>
+              <form id="chat-form" class="tfp-chat-input">
+                <textarea id="chat-input" class="tfp-textarea" placeholder="Write message..."></textarea>
+                <button class="tfp-button" type="submit">Send</button>
+              </form>
+            </div>
+          </article>
+          <article class="tfp-card">
+            <h3>Actions</h3>
+            <button class="tfp-button" type="button" style="width: 100%; margin-bottom: 1rem;">Mark complete</button>
+            <button class="tfp-button" type="button" style="width: 100%; background: rgba(255, 255, 255, 0.08); color: #fff;">
+              Request redo
+            </button>
+            <p style="margin-top: 1.5rem;">Files</p>
+            <ul>
+              <li><a href="#">strategy-brief.pdf</a></li>
+              <li><a href="#">feed-1.png</a></li>
+              <li><a href="#">promo-video.mp4</a></li>
+            </ul>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/pages/task-detail.ts"></script>
+  </body>
+</html>

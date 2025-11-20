@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Pro — Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="tfp-shell">
+      <aside class="tfp-sidebar">
+        <div class="tfp-logo">TaskFlow Pro</div>
+        <nav class="tfp-nav">
+          <a href="/dashboard.html">Dashboard</a>
+          <a href="/tasks.html">Tasks</a>
+          <a href="/task-detail.html">Task Detail</a>
+          <a href="/reports.html">Reports</a>
+          <a href="/users.html">Users</a>
+          <a class="active" href="/settings.html">Settings</a>
+          <a href="/login.html">Logout</a>
+        </nav>
+      </aside>
+      <main class="tfp-content">
+        <header class="tfp-toolbar">
+          <div>
+            <h1>Settings</h1>
+            <p>Control brand colors, permissions and bot connectivity</p>
+          </div>
+          <button class="theme-toggle" type="button">🌙</button>
+        </header>
+        <section class="tfp-card">
+          <form id="settings-form" class="tfp-grid">
+            <label>
+              <span>Default theme</span>
+              <select class="tfp-select" name="theme">
+                <option>Dark</option>
+                <option>Light</option>
+              </select>
+            </label>
+            <label>
+              <span>Telegram bot token</span>
+              <input class="tfp-input" placeholder="123456:ABCDEF" />
+            </label>
+            <label>
+              <span>Allow managers cross-team assignment</span>
+              <select class="tfp-select">
+                <option>Require director approval</option>
+                <option>Allow directly</option>
+              </select>
+            </label>
+            <button class="tfp-button" type="submit">Save preferences</button>
+          </form>
+          <div id="settings-status" style="margin-top: 1rem;"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/pages/settings.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Pro — Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="tfp-shell">
+      <aside class="tfp-sidebar">
+        <div class="tfp-logo">TaskFlow Pro</div>
+        <nav class="tfp-nav">
+          <a href="/dashboard.html">Dashboard</a>
+          <a href="/tasks.html">Tasks</a>
+          <a href="/task-detail.html">Task Detail</a>
+          <a href="/reports.html">Reports</a>
+          <a class="active" href="/users.html">Users</a>
+          <a href="/settings.html">Settings</a>
+          <a href="/login.html">Logout</a>
+        </nav>
+      </aside>
+      <main class="tfp-content">
+        <header class="tfp-toolbar">
+          <div>
+            <h1>Admin — Users</h1>
+            <p>Overview of staff, roles and Telegram onboarding</p>
+          </div>
+          <button class="theme-toggle" type="button">🌙</button>
+        </header>
+
+        <section class="tfp-card">
+          <header class="tfp-toolbar">
+            <div>
+              <h3>User directory</h3>
+              <p>Manage permissions & roles</p>
+            </div>
+            <button class="tfp-button" type="button">Add user</button>
+          </header>
+          <table class="tfp-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Department</th>
+                <th>Contact</th>
+              </tr>
+            </thead>
+            <tbody id="user-table"></tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/pages/users.ts"></script>
+  </body>
+</html>

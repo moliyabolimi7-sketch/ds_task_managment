@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Pro — Tasks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="tfp-shell">
+      <aside class="tfp-sidebar">
+        <div class="tfp-logo">TaskFlow Pro</div>
+        <nav class="tfp-nav">
+          <a href="/dashboard.html">Dashboard</a>
+          <a class="active" href="/tasks.html">Tasks</a>
+          <a href="/task-detail.html">Task Detail</a>
+          <a href="/reports.html">Reports</a>
+          <a href="/users.html">Users</a>
+          <a href="/settings.html">Settings</a>
+          <a href="/login.html">Logout</a>
+        </nav>
+      </aside>
+      <main class="tfp-content">
+        <header class="tfp-toolbar">
+          <div>
+            <h1>Task Library</h1>
+            <p>Filter, search and open assignments</p>
+          </div>
+          <button class="theme-toggle" type="button">🌙</button>
+        </header>
+
+        <section class="tfp-card">
+          <div class="tfp-toolbar">
+            <div>
+              <h3>Filters</h3>
+              <p>Select status to highlight specific work</p>
+            </div>
+            <select id="task-filter" class="tfp-select">
+              <option value="all">All</option>
+              <option>New</option>
+              <option>In progress</option>
+              <option>Pending review</option>
+              <option>Completed</option>
+            </select>
+          </div>
+          <div id="task-list" class="tfp-grid"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/pages/tasks.ts"></script>
+  </body>
+</html>

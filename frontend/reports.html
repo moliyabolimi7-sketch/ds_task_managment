@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Pro — Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="tfp-shell">
+      <aside class="tfp-sidebar">
+        <div class="tfp-logo">TaskFlow Pro</div>
+        <nav class="tfp-nav">
+          <a href="/dashboard.html">Dashboard</a>
+          <a href="/tasks.html">Tasks</a>
+          <a href="/task-detail.html">Task Detail</a>
+          <a class="active" href="/reports.html">Reports</a>
+          <a href="/users.html">Users</a>
+          <a href="/settings.html">Settings</a>
+          <a href="/login.html">Logout</a>
+        </nav>
+      </aside>
+      <main class="tfp-content">
+        <header class="tfp-toolbar">
+          <div>
+            <h1>Reports</h1>
+            <p>Track department health, leaderboard and exports</p>
+          </div>
+          <div>
+            <button class="tfp-button" type="button">Export Google Sheets</button>
+            <button class="theme-toggle" type="button">🌙</button>
+          </div>
+        </header>
+
+        <section class="tfp-card">
+          <h3>Department performance</h3>
+          <div id="reports" class="tfp-cards"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/pages/reports.ts"></script>
+  </body>
+</html>
