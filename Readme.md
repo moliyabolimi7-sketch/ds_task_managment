@@ -11,12 +11,19 @@ TaskFlow Pro menejerlar, direktorlar va hodimlar o'rtasidagi jarayonlarni yagona
 Batafsil dizayn `docs/ARCHITECTURE.md` faylida.
 
 ## 🚀 Ishga tushirish
-1. `.env` faylini yarating va quyidagilarni to'ldiring:
+1. `.env` faylini yarating va quyidagilarni to'ldiring (Render yoki boshqa hostda tayyor Redis/Postgres bo'lsa, o'sha ulanishni kiriting):
    ```env
+   DATABASE_URL=postgresql+psycopg://taskflow:taskflow@postgres:5432/taskflow
+   REDIS_URL=redis://redis:6379/0
    JWT_SECRET_KEY=super-secret
    JWT_REFRESH_SECRET_KEY=super-refresh
    TELEGRAM_BOT_TOKEN=123456:ABC
    GOOGLE_SERVICE_ACCOUNT_JSON=/secrets/google.json
+   ```
+
+   Masalan, Render'dagi public Redis endpointni ishlatishda `REDIS_URL` quyidagicha ko'rinishga ega bo'ladi (parolni o'zingizniki bilan almashtiring):
+   ```env
+   REDIS_URL=redis://default:<parol>@redis-16642.c14.us-east-1-3.ec2.cloud.redislabs.com:16642/0
    ```
 2. Docker Compose bilan barcha servislarni ko'taring:
    ```bash
