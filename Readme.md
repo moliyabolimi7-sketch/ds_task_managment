@@ -64,6 +64,56 @@ Minimal ishchi preview uchun lokal rejimda quyidagi amallarni bajaring:
    ```
    Demo ma’lumotlari kerak bo‘lsa, `app/services/reports/dashboard.py` va `app/routers/*` ichidagi seed funksiyalaridan foydalaning yoki qo‘lda foydalanuvchilarni yarating.
 
+## 🌐 Render'da deploy (step-by-step)
+Quyidagi bosqichlar Render'ga joylash uchun moslashtirilgan. Har bir servis alohida Render xizmati sifatida qo'yiladi.
+
+1. **Environment guruhini yarating** va quyidagi kalitlarni saqlang (hosted DB/cache/S3 manzillari bilan):
+   ```env
+   DATABASE_URL=postgresql+psycopg://<user>:<pass>@<render-pg-host>:5432/<db>
+   REDIS_URL=redis://default:<pass>@redis-16642.c14.us-east-1-3.ec2.cloud.redislabs.com:16642/0
+   S3_ENDPOINT=<s3-or-minio-endpoint>
+   S3_ACCESS_KEY=<access>
+   S3_SECRET_KEY=<secret>
+   S3_BUCKET=<bucket>
+   JWT_SECRET_KEY=<jwt-access>
+   JWT_REFRESH_SECRET_KEY=<jwt-refresh>
+   TELEGRAM_BOT_TOKEN=<bot-token>
+   FRONTEND_URL=<frontend-public-url>
+   GOOGLE_SERVICE_ACCOUNT_JSON=<path-or-json>
+   ```
+   Bu guruhni backend va bot xizmatlariga ulang.
+
+2. **Postgres va Redis xizmatlarini qo‘ying** (Render managed). Ulardan olingan URLlarni 1-bosqichdagi environment groupga kiriting.
+
+3. **Backend (FastAPI) — Web Service**:
+   - Root: `backend`
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port 8000 --app-dir backend`
+   - Environment: 1-bosqichdagi groupni ulang.
+   - Health check: `/api/v1/health` (agar kerak bo‘lsa `app/main.py` ichida mavjud).
+
+4. **Frontend — Static Site**:
+   - Root: `frontend`
+   - Build Command: `npm install && npm run build`
+   - Publish Directory: `frontend/dist`
+   - Agar API bazasi o‘zgargan bo‘lsa, `VITE_API_URL` env varini qo‘shing (masalan, `https://<backend>.onrender.com/api/v1`).
+
+5. **Telegram bot — Background Worker**:
+   - Root: `telegram_bot`
+   - Start Command: `python bot.py`
+   - Env: `BACKEND_URL=<backend-url>/api/v1` va `TELEGRAM_BOT_TOKEN` (1-bosqichdagi groupdan).
+   - Ishga tushishi uchun backend publika yo‘l bilan ochiq bo‘lishi kerak.
+
+6. **(Ixtiyoriy) Nginx/vanity domain**: agar yagona domen xohlasangiz, qo‘shimcha Render Web Service sifatida `nginx/` konfiguratsiyasini qo‘yib, frontend va backendga reverse-proxy qiling.
+
+7. **Tekshirish**:
+   - Backend: `https://<backend>.onrender.com/docs`
+   - Frontend: `https://<frontend>.onrender.com/login.html` (boshqa sahifalar `.html` bilan).
+   - Bot: `/start` orqali token va telefon tekshiruvini sinang.
+   - WebSocket chat: `wss://<backend>.onrender.com/ws/tasks/<task_id>` ustida ishlashini devtools orqali tasdiqlang.
+
+Shu ketma-ketlik docker-compose arxitekturasini Render xizmatlari ko‘rinishiga ajratib, minimal konfiguratsiya bilan to‘liq ishga tushirish imkonini beradi.
+
 ## 🔑 Asosiy imkoniyatlar
 - Telegram orqali login/parol generatsiyasi va tasdiqlash.
 - RBAC: Owner, Director, Admin, Manager, Employee rollari.
