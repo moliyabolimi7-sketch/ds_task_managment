@@ -31,6 +31,39 @@ Batafsil dizayn `docs/ARCHITECTURE.md` faylida.
    ```
 3. FastAPI hujjatlari `http://localhost:8000/docs` da, HTML frontend esa `http://localhost:5173/login.html` dan boshlanadi.
 
+## 🎬 Tezkor preview (dev)
+Minimal ishchi preview uchun lokal rejimda quyidagi amallarni bajaring:
+
+1. **Infra**: Postgres, Redis va MinIO ni compose orqali ishga tushuring:
+   ```bash
+   docker compose up -d postgres redis minio
+   ```
+   (Agar hosted Postgres/Redis ishlatsangiz, `.env` faylida `DATABASE_URL` va `REDIS_URL` ni mos ravishda kiriting.)
+2. **Backend (dev)**: yangi terminalda backend papkasidan uvicornni ishga tushuring:
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 --app-dir .
+   ```
+3. **Frontend (dev)**: boshqa terminalda frontendni dev server orqali ko‘tarib, backendga ulaning:
+   ```bash
+   cd frontend
+   npm install
+   VITE_API_URL=http://localhost:8000/api/v1 npm run dev -- --host
+   ```
+   Frontend ko‘rinishi `http://localhost:5173/login.html` da ochiladi; boshqa sahifalar (`/dashboard.html`, `/tasks.html`, ...).
+4. **Telegram bot (ixtiyoriy preview)**: agar botni sinab ko‘rmoqchi bo‘lsangiz:
+   ```bash
+   cd telegram_bot
+   pip install -r requirements.txt
+   BACKEND_URL=http://localhost:8000/api/v1 TELEGRAM_BOT_TOKEN=<token> python bot.py
+   ```
+5. **Ma’lumotlar**: Alembic migratsiyalarni ishga tushirish uchun backendda:
+   ```bash
+   alembic upgrade head
+   ```
+   Demo ma’lumotlari kerak bo‘lsa, `app/services/reports/dashboard.py` va `app/routers/*` ichidagi seed funksiyalaridan foydalaning yoki qo‘lda foydalanuvchilarni yarating.
+
 ## 🔑 Asosiy imkoniyatlar
 - Telegram orqali login/parol generatsiyasi va tasdiqlash.
 - RBAC: Owner, Director, Admin, Manager, Employee rollari.
